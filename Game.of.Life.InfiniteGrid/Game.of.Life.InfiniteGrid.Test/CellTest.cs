@@ -1,7 +1,6 @@
-﻿using System.Linq;
-
-namespace Game.of.Life.V2.Test
+﻿namespace Game.of.Life.V2.Test
 {
+    using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
 
@@ -26,7 +25,7 @@ namespace Game.of.Life.V2.Test
         }
 
         [TestMethod]
-        public void GivenNewCellWhenGetStateTheAlive()
+        public void GivenNewCellWhenGetStateThenReturnDead()
         {
             Check.That(new Cell(0, 1).CurrentState).IsEqualTo(CellState.Dead);
         }
