@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game.of.Life.InfiniteGrid", "Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid.csproj", "{8D190872-9C50-451A-8E68-331E57FB157B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game.of.Life.InfiniteGrid.Test", "Game.of.Life.InfiniteGrid.Test\Game.of.Life.InfiniteGrid.Test.csproj", "{6683003B-92DE-4E8D-9A99-FCDD7CF8D204}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D190872-9C50-451A-8E68-331E57FB157B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D190872-9C50-451A-8E68-331E57FB157B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D190872-9C50-451A-8E68-331E57FB157B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D190872-9C50-451A-8E68-331E57FB157B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6683003B-92DE-4E8D-9A99-FCDD7CF8D204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6683003B-92DE-4E8D-9A99-FCDD7CF8D204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6683003B-92DE-4E8D-9A99-FCDD7CF8D204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6683003B-92DE-4E8D-9A99-FCDD7CF8D204}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,9 @@
+F:\Alin\Source\Repos\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid.Test\bin\Debug\Game.of.Life.V2.Test.dll
+F:\Alin\Source\Repos\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid.Test\bin\Debug\Game.of.Life.V2.Test.pdb
+F:\Alin\Source\Repos\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid.Test\bin\Debug\Game.of.Life.V2.exe
+F:\Alin\Source\Repos\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid.Test\bin\Debug\NFluent.dll
+F:\Alin\Source\Repos\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid.Test\bin\Debug\Game.of.Life.V2.pdb
+F:\Alin\Source\Repos\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid.Test\bin\Debug\NFluent.xml
+F:\Alin\Source\Repos\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid.Test\obj\Debug\Game.of.Life.InfiniteGrid.Test.csprojResolveAssemblyReference.cache
+F:\Alin\Source\Repos\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid.Test\obj\Debug\Game.of.Life.V2.Test.dll
+F:\Alin\Source\Repos\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid\Game.of.Life.InfiniteGrid.Test\obj\Debug\Game.of.Life.V2.Test.pdb

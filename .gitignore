@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Game.of.Life.InfiniteGrid/Game.of.Life.InfiniteGrid/bin/Debug
+/Game.of.Life.InfiniteGrid/Game.of.Life.InfiniteGrid/obj/Debug
+/Game.of.Life.InfiniteGrid/Game.of.Life.InfiniteGrid.v12.suo
+/Game.of.Life.InfiniteGrid/Game.of.Life.V2.v12.suo
