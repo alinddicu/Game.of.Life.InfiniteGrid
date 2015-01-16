@@ -46,6 +46,7 @@
                     {
                         foundCell.X = xNeighbour;
                         foundCell.Y = yNeighbour;
+                        _knownNeighbours.Add(foundCell);
                     }
 
                     yield return foundCell;

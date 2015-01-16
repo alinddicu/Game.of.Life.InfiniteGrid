@@ -56,7 +56,7 @@ namespace Game.of.Life.V2.Test
             Check.That(neighbours).Contains(new Cell(0, -1));
             Check.That(neighbours).Contains(new Cell(1, -1));
 
-            Check.That(cell.KnownNeighbours).IsEmpty();
+            Check.That(cell.KnownNeighbours).ContainsExactly(neighbours);
         }
     }
 }
