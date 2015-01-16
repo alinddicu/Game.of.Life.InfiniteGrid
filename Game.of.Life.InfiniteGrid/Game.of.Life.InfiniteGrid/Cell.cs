@@ -1,48 +1,62 @@
 ﻿namespace Game.of.Life.V2
 {
-    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
 
-    public class Cell
+    public struct Cell
     {
-        public Cell(int x, int y, CellState state = CellState.Alive)
+        private readonly List<Cell> _knownNeighbours;
+
+        public Cell(int? x, int? y, CellState state = CellState.Dead)
+            : this()
         {
             X = x;
             Y = y;
             CurrentState = state;
-            Neighbours = new List<Cell>();
+            _knownNeighbours = new List<Cell>();
         }
 
         public CellState CurrentState { get; set; }
 
         public CellState? NextState { get; private set; }
 
-        public int X { get; private set; }
+        public int? X { get; private set; }
 
-        public int Y { get; private set; }
+        public int? Y { get; private set; }
 
-        public List<Cell> Neighbours { get; private set; }
-
-        public void AddNeighbours(params Cell[] cells)
+        public IEnumerable<Cell> KnownNeighbours
         {
-            if (Neighbours.Count() > 8)
+            get
             {
-                throw new Exception("The cell can't have more than 8 neighbours");
+                return _knownNeighbours;
             }
+        }
 
-            foreach (var cell in cells)
+        public IEnumerable<Cell> GetNeighbours()
+        {
+            var startX = X - 1;
+            var startY = Y - 1;
+            for (var xNeighbour = startX; xNeighbour <= X + 1; xNeighbour++)
             {
-                Neighbours.Remove(cell);
-                Neighbours.Add(cell);
+                for (var yNeighbour = startY; yNeighbour <= Y + 1; yNeighbour++)
+                {
+                    var foundCell = KnownNeighbours.SingleOrDefault(c => c.X == xNeighbour && c.Y == yNeighbour);
+                    if (foundCell.X == null && foundCell.Y == null)
+                    {
+                        foundCell.X = xNeighbour;
+                        foundCell.Y = yNeighbour;
+                    }
+
+                    yield return foundCell;
+                }
             }
         }
 
         public void Mutate()
         {
             NextState = CurrentState;
-            var aliveNeighboursCount = Neighbours.Count(n => n.CurrentState == CellState.Alive);
+            var aliveNeighboursCount = GetNeighbours().Count(n => n.CurrentState == CellState.Alive);
             if (aliveNeighboursCount < 2 || aliveNeighboursCount > 3)
             {
                 NextState = CellState.Dead;
@@ -56,17 +70,7 @@
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            if (ReferenceEquals(this, null))
-            {
-                return false;
-            }
-
-            return this.Equals(obj as Cell);
+            return Equals((Cell)obj);
         }
 
         private bool Equals(Cell cell)
@@ -101,7 +105,11 @@
 
         public void CompleteMutation()
         {
-            CurrentState = NextState.Value;
+            if (NextState != null)
+            {
+                CurrentState = NextState.Value;
+            }
+
             NextState = null;
         }
     }

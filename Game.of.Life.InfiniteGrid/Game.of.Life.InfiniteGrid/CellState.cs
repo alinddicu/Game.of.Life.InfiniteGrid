@@ -2,7 +2,7 @@
 {
     public enum CellState
     {
-        Alive,
-        Dead
+        Dead,
+        Alive
     }
 }
