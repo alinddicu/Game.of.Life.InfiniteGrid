@@ -65,10 +65,10 @@
                 NextState = CellState.Dead;
             }
 
-            //if (CurrentState == CellState.Dead && aliveNeighboursCount == 3)
-            //{
-            //    NextState = CellState.Alive;
-            //}
+            if (CurrentState == CellState.Dead && aliveNeighboursCount == 3)
+            {
+                NextState = CellState.Alive;
+            }
         }
 
         public override bool Equals(object obj)
