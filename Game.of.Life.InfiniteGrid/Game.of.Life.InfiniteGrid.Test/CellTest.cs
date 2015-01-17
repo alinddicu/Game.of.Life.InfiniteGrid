@@ -53,6 +53,23 @@ namespace Game.of.Life.V2.Test
         }
 
         [TestMethod]
+        // 3. Any live cell with more than three live neighbours dies, as if by overcrowding.
+        public void Given1AliveCellWith4AliveNeighboursWhenMutateTheCellDies()
+        {
+            var cell = new Cell(1, 1, CellState.Alive);
+            var grid = new Grid();
+            grid.Add(cell);
+            grid.Add(new Cell(0, 0, CellState.Alive));
+            grid.Add(new Cell(2, 2, CellState.Alive));
+            grid.Add(new Cell(1, 0, CellState.Alive));
+            grid.Add(new Cell(2, 0, CellState.Alive));
+            cell.DiscoverNeighbours(grid);
+            cell.Mutate();
+
+            Check.That(cell.NextState).Equals(CellState.Dead);
+        }
+
+        [TestMethod]
         public void CheckCellEquality()
         {
             var cell11 = new Cell(1, 1);

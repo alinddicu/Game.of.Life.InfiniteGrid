@@ -60,7 +60,7 @@
         {
             NextState = CurrentState;
             var aliveNeighboursCount = KnownNeighbours.Count(n => n.CurrentState == CellState.Alive);
-            if (aliveNeighboursCount < 2 /*|| aliveNeighboursCount > 3*/)
+            if (aliveNeighboursCount < 2 || aliveNeighboursCount > 3)
             {
                 NextState = CellState.Dead;
             }
