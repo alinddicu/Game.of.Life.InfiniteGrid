@@ -13,7 +13,7 @@
 
         public void Add(Cell cell)
         {
-            if (_knownCells.Contains(cell))
+            if (!_knownCells.Contains(cell))
             {
                 _knownCells.Add(cell);
             }

@@ -42,10 +42,12 @@
                 for (var yNeighbour = startY; yNeighbour <= Y + 1; yNeighbour++)
                 {
                     var foundCell = grid.GetKnownCells().SingleOrDefault(c => c.X == xNeighbour && c.Y == yNeighbour);
-                    if (foundCell.X != null || foundCell.Y != null) continue;
+                    if (foundCell.X == null && foundCell.Y == null)
+                    {
+                        foundCell.X = xNeighbour;
+                        foundCell.Y = yNeighbour;
+                    }
 
-                    foundCell.X = xNeighbour;
-                    foundCell.Y = yNeighbour;
                     if (foundCell != this && !_knownNeighbours.Contains(foundCell))
                     {
                         _knownNeighbours.Add(foundCell);
@@ -58,15 +60,15 @@
         {
             NextState = CurrentState;
             var aliveNeighboursCount = KnownNeighbours.Count(n => n.CurrentState == CellState.Alive);
-            if (aliveNeighboursCount < 2 || aliveNeighboursCount > 3)
+            if (aliveNeighboursCount < 2 /*|| aliveNeighboursCount > 3*/)
             {
                 NextState = CellState.Dead;
             }
 
-            if (CurrentState == CellState.Dead && aliveNeighboursCount == 3)
-            {
-                NextState = CellState.Alive;
-            }
+            //if (CurrentState == CellState.Dead && aliveNeighboursCount == 3)
+            //{
+            //    NextState = CellState.Alive;
+            //}
         }
 
         public override bool Equals(object obj)

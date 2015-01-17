@@ -38,6 +38,21 @@ namespace Game.of.Life.V2.Test
         }
 
         [TestMethod]
+        // 2. Any live cell with two or three live neighbours lives on to the next generation.
+        public void Given1AliveCellWith2AliveNeighboursWhenMutateTheCellStaysAlive()
+        {
+            var cell = new Cell(1, 1, CellState.Alive);
+            var grid = new Grid();
+            grid.Add(cell);
+            grid.Add(new Cell(0, 0, CellState.Alive));
+            grid.Add(new Cell(2, 2, CellState.Alive));
+            cell.DiscoverNeighbours(grid);
+            cell.Mutate();
+
+            Check.That(cell.NextState).Equals(CellState.Alive);
+        }
+
+        [TestMethod]
         public void CheckCellEquality()
         {
             var cell11 = new Cell(1, 1);
