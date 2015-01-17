@@ -13,11 +13,24 @@ namespace Game.of.Life.V2.Test
     public class CellTest
     {
         [TestMethod]
-        // TDD - 1st rule -> 1st test
-        public void Given1AliveCellWithWith0AliveNeighboursWhenMutateThenCellDies()
+        // TDD - half 1st rule -> 1st test
+        public void Given1AliveCellWith0AliveNeighboursWhenMutateThenCellDies()
         {
             var cell = new Cell(1, 1, CellState.Alive);
             var grid = new Grid();
+            cell.DiscoverNeighbours(grid);
+            cell.Mutate();
+
+            Check.That(cell.NextState).Equals(CellState.Dead);
+        }
+
+        [TestMethod]
+        // TDD - half 1st rule -> 2nd test
+        public void Given1AliveCellWith1AliveNeighboursWhenMutateThenCellDies()
+        {
+            var cell = new Cell(1, 1, CellState.Alive);
+            var grid = new Grid();
+            grid.Add(new Cell(0, 0, CellState.Alive));
             cell.DiscoverNeighbours(grid);
             cell.Mutate();
 
