@@ -33,7 +33,7 @@
             }
         }
 
-        public void DiscoverNeighbours()
+        public void DiscoverNeighbours(Grid grid)
         {
             var startX = X - 1;
             var startY = Y - 1;
@@ -41,15 +41,14 @@
             {
                 for (var yNeighbour = startY; yNeighbour <= Y + 1; yNeighbour++)
                 {
-                    var foundCell = KnownNeighbours.SingleOrDefault(c => c.X == xNeighbour && c.Y == yNeighbour);
-                    if (foundCell.X == null && foundCell.Y == null)
+                    var foundCell = grid.GetKnownCells().SingleOrDefault(c => c.X == xNeighbour && c.Y == yNeighbour);
+                    if (foundCell.X != null || foundCell.Y != null) continue;
+
+                    foundCell.X = xNeighbour;
+                    foundCell.Y = yNeighbour;
+                    if (foundCell != this && !_knownNeighbours.Contains(foundCell))
                     {
-                        foundCell.X = xNeighbour;
-                        foundCell.Y = yNeighbour;
-                        if (foundCell != this)
-                        {
-                            _knownNeighbours.Add(foundCell);
-                        }
+                        _knownNeighbours.Add(foundCell);
                     }
                 }
             }

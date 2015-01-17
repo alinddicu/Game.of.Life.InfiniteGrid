@@ -2,7 +2,6 @@
 
 namespace Game.of.Life.V2.Test
 {
-    using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
 
@@ -13,6 +12,18 @@ namespace Game.of.Life.V2.Test
     // 4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
     public class CellTest
     {
+        [TestMethod]
+        // TDD - 1st rule -> 1st test
+        public void Given1AliveCellWithWith0AliveNeighboursWhenMutateThenCellDies()
+        {
+            var cell = new Cell(1, 1, CellState.Alive);
+            var grid = new Grid();
+            cell.DiscoverNeighbours(grid);
+            cell.Mutate();
+
+            Check.That(cell.NextState).Equals(CellState.Dead);
+        }
+
         [TestMethod]
         public void CheckCellEquality()
         {
@@ -46,7 +57,7 @@ namespace Game.of.Life.V2.Test
         {
             var cell = new Cell(0, 0);
 
-            cell.DiscoverNeighbours();
+            cell.DiscoverNeighbours(new Grid());
 
             var supposedKnownNeighbours = new List<Cell>
             {
