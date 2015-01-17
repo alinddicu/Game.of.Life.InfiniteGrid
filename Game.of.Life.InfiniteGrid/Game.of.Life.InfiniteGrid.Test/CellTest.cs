@@ -1,4 +1,6 @@
-﻿namespace Game.of.Life.V2.Test
+﻿using System.Collections.Generic;
+
+namespace Game.of.Life.V2.Test
 {
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -40,22 +42,26 @@
         }
 
         [TestMethod]
-        public void WhenGetNeighboursThenReturn8CoordinatesValidNeighbours()
+        public void WhenDiscoverNeighboursThenReturn8CoordinatesValidNeighbours()
         {
             var cell = new Cell(0, 0);
 
-            var neighbours = cell.GetNeighbours().ToList();
+            cell.DiscoverNeighbours();
 
-            Check.That(neighbours).Contains(new Cell(-1, 1));
-            Check.That(neighbours).Contains(new Cell(0, 1));
-            Check.That(neighbours).Contains(new Cell(1, 1));
-            Check.That(neighbours).Contains(new Cell(-1, 0));
-            Check.That(neighbours).Contains(new Cell(1, 0));
-            Check.That(neighbours).Contains(new Cell(-1, -1));
-            Check.That(neighbours).Contains(new Cell(0, -1));
-            Check.That(neighbours).Contains(new Cell(1, -1));
+            var supposedKnownNeighbours = new List<Cell>
+            {
+                new Cell(-1, 1),
+                new Cell(0, 1),
+                new Cell(1, 1),
+                new Cell(-1, 0),
+                new Cell(1, 0),
+                new Cell(-1, -1),
+                new Cell(0, -1),
+                new Cell(1, -1)
+            };
 
-            Check.That(cell.KnownNeighbours).ContainsExactly(neighbours);
+            Check.That(cell.KnownNeighbours).HasSize(8);
+            Check.That(cell.KnownNeighbours).Contains(supposedKnownNeighbours);
         }
     }
 }

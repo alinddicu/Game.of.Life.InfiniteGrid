@@ -33,7 +33,7 @@
             }
         }
 
-        public IEnumerable<Cell> GetNeighbours()
+        public void DiscoverNeighbours()
         {
             var startX = X - 1;
             var startY = Y - 1;
@@ -46,10 +46,11 @@
                     {
                         foundCell.X = xNeighbour;
                         foundCell.Y = yNeighbour;
-                        _knownNeighbours.Add(foundCell);
+                        if (foundCell != this)
+                        {
+                            _knownNeighbours.Add(foundCell);
+                        }
                     }
-
-                    yield return foundCell;
                 }
             }
         }
@@ -57,7 +58,7 @@
         public void Mutate()
         {
             NextState = CurrentState;
-            var aliveNeighboursCount = GetNeighbours().Count(n => n.CurrentState == CellState.Alive);
+            var aliveNeighboursCount = KnownNeighbours.Count(n => n.CurrentState == CellState.Alive);
             if (aliveNeighboursCount < 2 || aliveNeighboursCount > 3)
             {
                 NextState = CellState.Dead;
