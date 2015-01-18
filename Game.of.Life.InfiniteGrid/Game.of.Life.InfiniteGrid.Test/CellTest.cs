@@ -108,10 +108,7 @@ namespace Game.of.Life.V2.Test
             var cell00 = new Cell(0, 0);
             Check.That(Equals(cell11, cell00)).IsFalse();
             Check.That(cell11 == cell00).IsFalse();
-            Check.That(Equals(cell00, cell00)).IsTrue();
-            Check.That(cell00 == cell00).IsTrue();
-            Check.That(Equals(cell11, null)).IsFalse();
-            Check.That(Equals(null, cell11)).IsFalse();
+            Check.That(cell00).Equals(cell00);
         }
 
         [TestMethod]
