@@ -1,4 +1,4 @@
-﻿namespace Game.of.Life.V2.Test
+﻿namespace Game.of.Life.InfiniteGrid.Test
 {
     using System.Linq;
     using NFluent;

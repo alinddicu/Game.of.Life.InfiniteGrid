@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Game.of.Life.V2.Test
+namespace Game.of.Life.InfiniteGrid.Test
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;

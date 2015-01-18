@@ -1,7 +1,6 @@
-﻿using System.Linq;
-
-namespace Game.of.Life.V2
+﻿namespace Game.of.Life.InfiniteGrid
 {
+    using System.Linq;
     using System.Collections.Generic;
 
     public class Grid

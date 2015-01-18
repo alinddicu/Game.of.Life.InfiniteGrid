@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Game.of.Life.V2.Test")]
+[assembly: AssemblyTitle("Game.of.Life.InfiniteGrid.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("CEGID VAISE")]
-[assembly: AssemblyProduct("Game.of.Life.V2.Test")]
-[assembly: AssemblyCopyright("Copyright © CEGID VAISE 2014")]
+[assembly: AssemblyCompany("alinddicu")]
+[assembly: AssemblyProduct("Game.of.Life.InfiniteGrid.Test")]
+[assembly: AssemblyCopyright("Copyright © alinddicu 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

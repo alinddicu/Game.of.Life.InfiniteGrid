@@ -1,4 +1,4 @@
-﻿namespace Game.of.Life.V2
+﻿namespace Game.of.Life.InfiniteGrid
 {
     using System.Collections.Generic;
     using System.Globalization;
