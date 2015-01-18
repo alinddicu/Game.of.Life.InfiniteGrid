@@ -22,5 +22,16 @@
             Check.That(refreshedKnownCells).HasSize(9);
             Check.That(refreshedKnownCells).Contains(supposedRefreshedKnownCells);
         }
+
+        [TestMethod]
+        public void WhenAddCellThenCellIsAddedToTheKnownCells()
+        {
+            var grid = new Grid();
+            Check.That(grid.GetKnownCells()).HasSize(0);
+            var cell = new Cell(1, 1);
+
+            grid.Add(cell);
+            Check.That(grid.GetKnownCells()).ContainsExactly(cell);
+        }
     }
 }
