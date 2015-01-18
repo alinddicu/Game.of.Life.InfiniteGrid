@@ -148,5 +148,15 @@ namespace Game.of.Life.InfiniteGrid.Test
             Check.That(cell.KnownNeighbours).HasSize(8);
             Check.That(cell.KnownNeighbours).Contains(supposedKnownNeighbours);
         }
+
+        [TestMethod]
+        public void WhenCellDrawsThenCellIsDrawnCorrectly()
+        {
+            var deadCell = new Cell(0, 0);
+            Check.That(deadCell.Draw()).Equals(" ");
+
+            var aliveCell = new Cell(1, 1, CellState.Alive);
+            Check.That(aliveCell.Draw()).Equals("+");
+        }
     }
 }

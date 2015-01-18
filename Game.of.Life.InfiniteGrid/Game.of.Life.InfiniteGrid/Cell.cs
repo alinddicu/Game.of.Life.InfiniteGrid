@@ -1,4 +1,6 @@
-﻿namespace Game.of.Life.InfiniteGrid
+﻿using System;
+
+namespace Game.of.Life.InfiniteGrid
 {
     using System.Collections.Generic;
     using System.Globalization;
@@ -115,6 +117,16 @@
         public static bool operator !=(Cell left, Cell right)
         {
             return !Equals(left, right);
+        }
+
+        public string Draw()
+        {
+            if (CurrentState == CellState.Alive)
+            {
+                return "+";
+            }
+
+            return " ";
         }
     }
 }

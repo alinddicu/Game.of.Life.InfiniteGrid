@@ -1,4 +1,6 @@
-﻿namespace Game.of.Life.InfiniteGrid
+﻿using System;
+
+namespace Game.of.Life.InfiniteGrid
 {
     using System.Linq;
     using System.Collections.Generic;
@@ -23,7 +25,6 @@
         public void RefreshKnownCells()
         {
             var refreshedKnownCells = new List<Cell>();
-
             foreach (var knownCell in _knownCells)
             {
                 knownCell.DiscoverNeighbours(this);
@@ -31,8 +32,7 @@
                 refreshedKnownCells.Add(knownCell);
             }
 
-            _knownCells.Clear();
-            _knownCells.AddRange(refreshedKnownCells.Distinct());
+            _knownCells.AddRange(refreshedKnownCells.Distinct().Except(_knownCells));
         }
 
         public void AddRange(params Cell[] cells)
@@ -55,6 +55,37 @@
             {
                 cell.CompleteMutation();
             }
+        }
+
+        public IEnumerable<string> Draw()
+        {
+            OrderCells();
+            var yCellGroups = _knownCells.GroupBy(c => c.Y).ToDictionary(g => g.Key);
+
+            foreach (var yKey in yCellGroups.Keys.OrderBy(k => k))
+            {
+                var line = string.Empty;
+                foreach (var cell in yCellGroups[yKey])
+                {
+                    line += cell.Draw();
+                }
+
+                yield return line;
+            }
+        }
+
+        private void OrderCells()
+        {
+            var yCellGroups = _knownCells.GroupBy(c => c.Y).ToDictionary(g => g.Key);
+
+            var orderedCells = new List<Cell>();
+            foreach (var yKey in yCellGroups.Keys.OrderBy(k => k))
+            {
+                orderedCells.AddRange(yCellGroups[yKey].OrderBy(c => c.X));
+            }
+
+            _knownCells.Clear();
+            _knownCells.AddRange(orderedCells);
         }
     }
 }

@@ -75,5 +75,21 @@
             grid.CompleteMutation();
             Check.That(cell00.CurrentState).IsEqualTo(CellState.Alive);
         }
+
+        [TestMethod]
+        public void Given2By2GridWhenDrawThenDrawingIsCorrect()
+        {
+            var grid = new Grid();
+            var cell00 = new Cell(0, 0);
+            var cell10 = new Cell(1, 0, CellState.Alive);
+            var cell01 = new Cell(0, 1, CellState.Alive);
+            var cell11 = new Cell(1, 1, CellState.Alive);
+
+            grid.AddRange(cell00, cell10, cell01, cell11);
+
+            var lines = grid.Draw().ToList();
+            Check.That(lines[0]).IsEqualTo(" +");
+            Check.That(lines[1]).IsEqualTo("++");
+        }
     }
 }
