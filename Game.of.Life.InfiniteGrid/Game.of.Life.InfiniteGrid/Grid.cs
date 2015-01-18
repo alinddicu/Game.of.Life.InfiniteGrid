@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Game.of.Life.InfiniteGrid
+﻿namespace Game.of.Life.InfiniteGrid
 {
     using System.Linq;
     using System.Collections.Generic;
@@ -86,6 +84,13 @@ namespace Game.of.Life.InfiniteGrid
 
             _knownCells.Clear();
             _knownCells.AddRange(orderedCells);
+        }
+
+        public void RunOneCycle()
+        {
+            Mutate();
+            CompleteMutation();
+            RefreshKnownCells();
         }
     }
 }

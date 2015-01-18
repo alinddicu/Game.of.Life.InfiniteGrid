@@ -121,12 +121,7 @@ namespace Game.of.Life.InfiniteGrid
 
         public string Draw()
         {
-            if (CurrentState == CellState.Alive)
-            {
-                return "+";
-            }
-
-            return " ";
+            return CurrentState == CellState.Alive ? "+" : " ";
         }
     }
 }

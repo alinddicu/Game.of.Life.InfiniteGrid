@@ -1,4 +1,6 @@
-﻿namespace Game.of.Life.InfiniteGrid.Test
+﻿using System.Collections.Generic;
+
+namespace Game.of.Life.InfiniteGrid.Test
 {
     using System.Linq;
     using NFluent;
@@ -21,6 +23,70 @@
 
             Check.That(refreshedKnownCells).HasSize(9);
             Check.That(refreshedKnownCells).Contains(supposedRefreshedKnownCells);
+        }
+
+        [TestMethod]
+        public void WhenRefreshThenKnownCellsContainsTheUnknownCellsBeforeBis()
+        {
+            var cell00 = new Cell(0, 0, CellState.Alive);
+            var cell10 = new Cell(-1, 0, CellState.Alive);
+            var cell01 = new Cell(0, -1, CellState.Alive);
+            var cell11 = new Cell(-1, -1, CellState.Alive);
+
+            var grid = new Grid();
+            grid.AddRange(cell00, cell10, cell01, cell11);
+
+            grid.RefreshKnownCells();
+
+            cell00.DiscoverNeighbours(grid);
+            cell10.DiscoverNeighbours(grid);
+            cell01.DiscoverNeighbours(grid);
+            cell11.DiscoverNeighbours(grid);
+            var supposedKnown = new List<Cell>();
+            supposedKnown.AddRange(cell00.KnownNeighbours);
+            supposedKnown.AddRange(cell10.KnownNeighbours);
+            supposedKnown.AddRange(cell01.KnownNeighbours);
+            supposedKnown.AddRange(cell11.KnownNeighbours);
+            supposedKnown = supposedKnown.Distinct().ToList();
+
+            var knownCells = grid.GetKnownCells().ToList();
+            Check.That(knownCells).Contains(supposedKnown);
+
+            // 3
+            Check.That(knownCells.Where(c => c.X == -2)).HasSize(4);
+            Check.That(knownCells.Where(c => c.X == -1)).HasSize(4);
+            Check.That(knownCells.Where(c => c.X == 0)).HasSize(4);
+            Check.That(knownCells.Where(c => c.X == 1)).HasSize(4);
+
+            Check.That(knownCells.Where(c => c.Y == -2)).HasSize(4);
+            var yEgalMinus1 = knownCells.Where(c => c.Y == -1).ToList();
+            // 5 -> (2;-1)
+            Check.That(knownCells.Where(c => c.Y == -1)).HasSize(4);
+            var yEgal0 = knownCells.Where(c => c.Y == 0).ToList();
+            // 5 -> (2;0)
+            Check.That(knownCells.Where(c => c.Y == 0)).HasSize(4);
+            Check.That(knownCells.Where(c => c.Y == 1)).HasSize(4);
+            Check.That(knownCells).HasSize(16);
+        }
+
+        [TestMethod]
+        public void WhenRefreshThenKnownCellsContainsTheUnknownCellsBeforeBisBis()
+        {
+            var cell11 = new Cell(1, 0, CellState.Alive);
+
+            var grid = new Grid();
+            grid.AddRange(cell11);
+
+            grid.RefreshKnownCells();
+
+            cell11.DiscoverNeighbours(grid);
+            var supposedKnown = new List<Cell>();
+            supposedKnown.AddRange(cell11.KnownNeighbours);
+            supposedKnown = supposedKnown.Distinct().ToList();
+
+            Check.That(grid.GetKnownCells()).Contains(supposedKnown);
+
+            Check.That(grid.GetKnownCells()).HasSize(9);
         }
 
         [TestMethod]
