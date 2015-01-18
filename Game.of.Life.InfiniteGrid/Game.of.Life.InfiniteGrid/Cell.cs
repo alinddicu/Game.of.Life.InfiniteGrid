@@ -93,7 +93,7 @@
 
         public override string ToString()
         {
-            return string.Format(CultureInfo.CurrentCulture, "X : {0}, Y : {1}, State : {2}", X, Y, CurrentState);
+            return string.Format(CultureInfo.CurrentCulture, "X : {0}, Y : {1}, CurrentState : {2}, NextState : {3}", X, Y, CurrentState, NextState);
         }
 
         public override int GetHashCode()

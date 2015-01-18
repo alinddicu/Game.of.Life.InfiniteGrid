@@ -35,5 +35,24 @@ namespace Game.of.Life.V2
             _knownCells.Clear();
             _knownCells.AddRange(refreshedKnownCells.Distinct());
         }
+
+        public void AddRange(params Cell[] cells)
+        {
+            _knownCells.AddRange(cells);
+        }
+
+        public void Mutate()
+        {
+            var mutatedCells = new List<Cell>();
+            foreach (var cellToMutate in _knownCells)
+            {
+                cellToMutate.DiscoverNeighbours(this);
+                cellToMutate.Mutate();
+                mutatedCells.Add(cellToMutate);
+            }
+
+            _knownCells.Clear();
+            _knownCells.AddRange(mutatedCells);
+        }
     }
 }
