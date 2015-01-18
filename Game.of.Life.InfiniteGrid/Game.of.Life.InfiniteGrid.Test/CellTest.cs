@@ -86,6 +86,20 @@ namespace Game.of.Life.V2.Test
         }
 
         [TestMethod]
+        public void WhenCellMutatesThenNextStateBecomesCurrentState()
+        {
+            var cell = new Cell(1, 1, CellState.Alive);
+            var grid = new Grid();
+            cell.DiscoverNeighbours(grid);
+            cell.Mutate();
+            var nextState = cell.NextState;
+            cell.CompleteMutation();
+
+            Check.That(cell.CurrentState).Equals(nextState);
+            Check.That(cell.NextState).IsNull();
+        }
+
+        [TestMethod]
         public void CheckCellEquality()
         {
             var cell11 = new Cell(1, 1);

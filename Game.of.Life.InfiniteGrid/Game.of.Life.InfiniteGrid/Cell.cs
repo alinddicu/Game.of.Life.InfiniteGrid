@@ -71,6 +71,16 @@
             }
         }
 
+        public void CompleteMutation()
+        {
+            if (NextState != null)
+            {
+                CurrentState = NextState.Value;
+            }
+
+            NextState = null;
+        }
+
         public override bool Equals(object obj)
         {
             return Equals((Cell)obj);
@@ -104,16 +114,6 @@
         public static bool operator !=(Cell left, Cell right)
         {
             return !Equals(left, right);
-        }
-
-        public void CompleteMutation()
-        {
-            if (NextState != null)
-            {
-                CurrentState = NextState.Value;
-            }
-
-            NextState = null;
         }
     }
 }
