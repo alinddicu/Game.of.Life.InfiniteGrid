@@ -49,5 +49,13 @@ namespace Game.of.Life.V2
                 cellToMutate.Mutate();
             }
         }
+
+        public void CompleteMutation()
+        {
+            foreach (var cell in _knownCells)
+            {
+                cell.CompleteMutation();
+            }
+        }
     }
 }

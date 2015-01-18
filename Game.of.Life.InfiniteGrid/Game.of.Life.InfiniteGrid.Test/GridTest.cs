@@ -59,5 +59,21 @@
             grid.Mutate();
             Check.That(cell00.NextState).IsEqualTo(CellState.Alive);
         }
+
+        [TestMethod]
+        public void WhenGridCompleteMutationThenAllCellCompleteMutation()
+        {
+            var grid = new Grid();
+            var cell00 = new Cell(0, 0);
+            var cell10 = new Cell(1, 0, CellState.Alive);
+            var cell01 = new Cell(0, 1, CellState.Alive);
+            var cell11 = new Cell(1, 1, CellState.Alive);
+
+            grid.AddRange(cell00, cell10, cell01, cell11);
+
+            grid.Mutate();
+            grid.CompleteMutation();
+            Check.That(cell00.CurrentState).IsEqualTo(CellState.Alive);
+        }
     }
 }
