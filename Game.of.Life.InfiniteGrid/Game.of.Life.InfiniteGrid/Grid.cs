@@ -43,16 +43,11 @@ namespace Game.of.Life.V2
 
         public void Mutate()
         {
-            var mutatedCells = new List<Cell>();
             foreach (var cellToMutate in _knownCells)
             {
                 cellToMutate.DiscoverNeighbours(this);
                 cellToMutate.Mutate();
-                mutatedCells.Add(cellToMutate);
             }
-
-            _knownCells.Clear();
-            _knownCells.AddRange(mutatedCells);
         }
     }
 }

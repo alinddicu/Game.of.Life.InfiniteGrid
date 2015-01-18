@@ -4,12 +4,11 @@
     using System.Globalization;
     using System.Linq;
 
-    public struct Cell
+    public class Cell
     {
         private readonly List<Cell> _knownNeighbours;
 
         public Cell(int? x, int? y, CellState state = CellState.Dead)
-            : this()
         {
             X = x;
             Y = y;
@@ -17,7 +16,7 @@
             _knownNeighbours = new List<Cell>();
         }
 
-        public CellState CurrentState { get; set; }
+        public CellState CurrentState { get; private set; }
 
         public CellState? NextState { get; private set; }
 
@@ -41,12 +40,9 @@
             {
                 for (var yNeighbour = startY; yNeighbour <= Y + 1; yNeighbour++)
                 {
-                    var foundCell = grid.GetKnownCells().SingleOrDefault(c => c.X == xNeighbour && c.Y == yNeighbour);
-                    if (foundCell.X == null && foundCell.Y == null)
-                    {
-                        foundCell.X = xNeighbour;
-                        foundCell.Y = yNeighbour;
-                    }
+                    var foundCell = grid.GetKnownCells()
+                        .SingleOrDefault(c => c.X == xNeighbour && c.Y == yNeighbour) ??
+                                    new Cell(xNeighbour, yNeighbour);
 
                     if (foundCell != this && !_knownNeighbours.Contains(foundCell))
                     {
@@ -83,7 +79,12 @@
 
         public override bool Equals(object obj)
         {
-            return Equals((Cell)obj);
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            return !ReferenceEquals(this, null) && Equals(obj as Cell);
         }
 
         private bool Equals(Cell cell)

@@ -57,19 +57,7 @@
             grid.AddRange(cell00, cell10, cell01, cell11);
 
             grid.Mutate();
-            Check.That(grid.GetKnownCells().Single(c => c.X == 0 && c.Y == 0).NextState).IsEqualTo(CellState.Alive);
-        }
-
-        [TestMethod]
-        public void WhenRemoveCellThenCellIsRemovedFromTheKnownCells()
-        {
-            var grid = new Grid();
-            var cell = new Cell(1, 1);
-
-            grid.Add(cell);
-            Check.That(grid.GetKnownCells()).ContainsExactly(cell);
-            grid.Remove(cell);
-            Check.That(grid.GetKnownCells()).IsEmpty();
+            Check.That(cell00.NextState).IsEqualTo(CellState.Alive);
         }
     }
 }
