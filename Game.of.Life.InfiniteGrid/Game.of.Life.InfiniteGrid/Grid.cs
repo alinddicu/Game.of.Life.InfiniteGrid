@@ -1,4 +1,6 @@
-﻿namespace Game.of.Life.V2
+﻿using System.Linq;
+
+namespace Game.of.Life.V2
 {
     using System.Collections.Generic;
 
@@ -17,6 +19,21 @@
             {
                 _knownCells.Add(cell);
             }
+        }
+
+        public void RefreshKnownCells()
+        {
+            var refreshedKnownCells = new List<Cell>();
+
+            foreach (var knownCell in _knownCells)
+            {
+                knownCell.DiscoverNeighbours(this);
+                refreshedKnownCells.AddRange(knownCell.KnownNeighbours);
+                refreshedKnownCells.Add(knownCell);
+            }
+
+            _knownCells.Clear();
+            _knownCells.AddRange(refreshedKnownCells.Distinct());
         }
     }
 }
