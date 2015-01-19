@@ -157,5 +157,27 @@ namespace Game.of.Life.InfiniteGrid.Test
             Check.That(lines[0]).IsEqualTo(" +");
             Check.That(lines[1]).IsEqualTo("++");
         }
+
+        [TestMethod]
+        public void Test()
+        {
+            var grid = new Grid();
+            var cell1 = new Cell(-1, 0, CellState.Alive);
+            var cell2 = new Cell(0, 1, CellState.Alive);
+            var cell3 = new Cell(0, 0, CellState.Alive);
+            var cell4 = new Cell(0, -1, CellState.Alive);
+            var cell5 = new Cell(1, 1, CellState.Alive);
+            var cell6 = new Cell(1, 0, CellState.Alive);
+            var cell7 = new Cell(-1, 1, CellState.Alive);
+
+            grid.AddRange(cell1, cell2, cell3, cell4, cell5, cell6, cell7);
+            grid.Mutate();
+            grid.CompleteMutation(); ;
+
+            var lines = grid.Draw().ToList();
+            Check.That(lines[0]).Contains("+ +");
+            Check.That(lines[1]).Contains("+ ++");
+            Check.That(lines[2]).Contains("+ +");
+        }
     }
 }
