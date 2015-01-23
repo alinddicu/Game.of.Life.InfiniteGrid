@@ -88,9 +88,9 @@
 
         public void RunOneCycle()
         {
+            RefreshKnownCells();
             Mutate();
             CompleteMutation();
-            RefreshKnownCells();
         }
     }
 }

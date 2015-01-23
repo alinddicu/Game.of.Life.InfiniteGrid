@@ -159,7 +159,7 @@ namespace Game.of.Life.InfiniteGrid.Test
         }
 
         [TestMethod]
-        public void Test()
+        public void RunOneCycleTest()
         {
             var grid = new Grid();
             var cell1 = new Cell(-1, 0, CellState.Alive);
@@ -168,16 +168,15 @@ namespace Game.of.Life.InfiniteGrid.Test
             var cell4 = new Cell(0, -1, CellState.Alive);
             var cell5 = new Cell(1, 1, CellState.Alive);
             var cell6 = new Cell(1, 0, CellState.Alive);
-            var cell7 = new Cell(-1, 1, CellState.Alive);
+            var cell7 = new Cell(1, -1, CellState.Alive);
 
             grid.AddRange(cell1, cell2, cell3, cell4, cell5, cell6, cell7);
-            grid.Mutate();
-            grid.CompleteMutation(); ;
+            grid.RunOneCycle();
 
             var lines = grid.Draw().ToList();
-            Check.That(lines[0]).Contains("+ +");
-            Check.That(lines[1]).Contains("+ ++");
-            Check.That(lines[2]).Contains("+ +");
+            Check.That(lines[1]).Contains("+ +");
+            Check.That(lines[2]).Contains("+  +");
+            Check.That(lines[3]).Contains("+ +");
         }
     }
 }

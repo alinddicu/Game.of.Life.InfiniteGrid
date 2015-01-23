@@ -1,10 +1,9 @@
-﻿using System.Linq;
-
-namespace Game.of.Life.InfiniteGrid
+﻿namespace Game.of.Life.InfiniteGrid
 {
     using System;
-    using System.Threading;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
 
     public static class Program
     {
@@ -88,18 +87,16 @@ namespace Game.of.Life.InfiniteGrid
 
             var grid = new Grid();
             grid.AddRange(cells.ToArray());
-            grid.RefreshKnownCells();
 
             PrintToConsole(grid.Draw());
             Console.ReadLine();
-            Console.SetWindowPosition(0, 0);
             while (true)
             {
                 grid.RunOneCycle();
 
                 PrintToConsole(grid.Draw());
                 Thread.Sleep(1000);
-                Console.ReadLine();
+                //Console.ReadLine();
 
                 Console.Clear();
             }
