@@ -91,6 +91,18 @@
             RefreshKnownCells();
             Mutate();
             CompleteMutation();
+            TrimHopelessBorderCells();
+        }
+
+        public void TrimHopelessBorderCells()
+        {
+            var cellsToClear =
+                _knownCells.Where(c => 
+                    c.CurrentState == CellState.Dead 
+                    && c.KnownNeighbours.Count(n => n.CurrentState == CellState.Dead) == 5
+                    && c.KnownNeighbours.Count() == 5);
+
+            _knownCells.RemoveAll(cellsToClear.Contains);
         }
     }
 }

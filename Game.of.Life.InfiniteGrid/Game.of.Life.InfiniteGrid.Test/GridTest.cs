@@ -178,5 +178,26 @@ namespace Game.of.Life.InfiniteGrid.Test
             Check.That(lines[2]).Contains("+  +");
             Check.That(lines[3]).Contains("+ +");
         }
+
+        [TestMethod]
+        public void GivenDeadCellWithAllDead5NeighboursWhenTrimHopelessBorderCellsThenCellDies()
+        {
+            var grid = new Grid();
+            var cell1 = new Cell(-1, 0);
+            var cell2 = new Cell(0, 0);
+            var cell3 = new Cell(1, 0);
+            var cell4 = new Cell(-1, -1);
+            var cell5 = new Cell(0, -1);
+            var cell6 = new Cell(1, -1);
+            var cell7 = new Cell(-1, -2, CellState.Alive);
+            var cell8 = new Cell(0, -2, CellState.Alive);
+            var cell9 = new Cell(1, -2, CellState.Alive);
+
+            var allCells = new[] {cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9};
+            grid.AddRange(allCells);
+            grid.TrimHopelessBorderCells();
+
+            Check.That(grid.GetKnownCells()).Contains(allCells.Except(new []{cell3}));
+        }
     }
 }
